@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
+    </entry>
+    <entry>
+      <string>oscillationDetectionCounter</string>
+      <int>100000</int>
+    </entry>
+    <entry>
+      <string>recoverFromOscillation</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>view1</string>
+      <transform>
+        <matrix>
+          <double>2.499758243883571</double>
+          <double>0.0</double>
+          <double>0.0</double>
+          <double>2.499758243883571</double>
+          <double>-1101.942608403443</double>
+          <double>-1478.220303403927</double>
+        </matrix>
+      </transform>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="940" y="900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="800" y="940"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NAnd</elementName>
+      <elementAttributes>
+        <entry>
+          <string>wideShape</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="880"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="800" y="880"/>
+      <p2 x="820" y="880"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="900"/>
+      <p2 x="940" y="900"/>
+    </wire>
+    <wire>
+      <p1 x="800" y="940"/>
+      <p2 x="820" y="940"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="920"/>
+      <p2 x="820" y="940"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

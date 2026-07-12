@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
+    </entry>
+    <entry>
+      <string>Height</string>
+      <int>2</int>
+    </entry>
+  </attributes>
+  <visualElements>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-7740" y="-9900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-7740" y="-9860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>O</string>
+        </entry>
+      </elementAttributes>
+      <pos x="-7460" y="-9860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>AND.dig</elementName>
+      <elementAttributes/>
+      <pos x="-7620" y="-9900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>AND.dig</elementName>
+      <elementAttributes/>
+      <pos x="-7620" y="-9800"/>
+    </visualElement>
+    <visualElement>
+      <elementName>OR.dig</elementName>
+      <elementAttributes/>
+      <pos x="-7540" y="-9880"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NOT.dig</elementName>
+      <elementAttributes/>
+      <pos x="-7700" y="-9900"/>
+    </visualElement>
+    <visualElement>
+      <elementName>NOT.dig</elementName>
+      <elementAttributes/>
+      <pos x="-7700" y="-9760"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="-7480" y="-9860"/>
+      <p2 x="-7460" y="-9860"/>
+    </wire>
+    <wire>
+      <p1 x="-7740" y="-9860"/>
+      <p2 x="-7720" y="-9860"/>
+    </wire>
+    <wire>
+      <p1 x="-7720" y="-9860"/>
+      <p2 x="-7620" y="-9860"/>
+    </wire>
+    <wire>
+      <p1 x="-7560" y="-9780"/>
+      <p2 x="-7540" y="-9780"/>
+    </wire>
+    <wire>
+      <p1 x="-7720" y="-9880"/>
+      <p2 x="-7700" y="-9880"/>
+    </wire>
+    <wire>
+      <p1 x="-7560" y="-9880"/>
+      <p2 x="-7540" y="-9880"/>
+    </wire>
+    <wire>
+      <p1 x="-7700" y="-9800"/>
+      <p2 x="-7620" y="-9800"/>
+    </wire>
+    <wire>
+      <p1 x="-7640" y="-9900"/>
+      <p2 x="-7620" y="-9900"/>
+    </wire>
+    <wire>
+      <p1 x="-7740" y="-9900"/>
+      <p2 x="-7720" y="-9900"/>
+    </wire>
+    <wire>
+      <p1 x="-7720" y="-9900"/>
+      <p2 x="-7700" y="-9900"/>
+    </wire>
+    <wire>
+      <p1 x="-7640" y="-9760"/>
+      <p2 x="-7620" y="-9760"/>
+    </wire>
+    <wire>
+      <p1 x="-7720" y="-9760"/>
+      <p2 x="-7700" y="-9760"/>
+    </wire>
+    <wire>
+      <p1 x="-7700" y="-9880"/>
+      <p2 x="-7700" y="-9800"/>
+    </wire>
+    <wire>
+      <p1 x="-7540" y="-9840"/>
+      <p2 x="-7540" y="-9780"/>
+    </wire>
+    <wire>
+      <p1 x="-7720" y="-9860"/>
+      <p2 x="-7720" y="-9760"/>
+    </wire>
+    <wire>
+      <p1 x="-7720" y="-9900"/>
+      <p2 x="-7720" y="-9880"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
