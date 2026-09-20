@@ -1,0 +1,6 @@
+sim/*.vvp
+programs/*.mem
+__pycache__/
+*.pyc
+asic/CPU_export_obs.v
+abc.history

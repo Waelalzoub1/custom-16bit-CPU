@@ -1,0 +1,1238 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.66 (git sha1 86f2ddebc-dirty, g++ 16.1.1 -march=x86-64 -mtune=generic -O2 -fno-plt -fexceptions -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/yosys/src=/usr/src/debug/yosys -fPIC -O3) [startdir/yosys at makepkg]
+
+-- Running command `read_verilog asic/CPU_export_obs.v; hierarchy -check -top CPU_export; proc; flatten; opt; memory -nomap; opt -full; techmap; opt -full; abc -g AND,NAND,OR,NOR,XOR,XNOR,ANDNOT,ORNOT,MUX; opt_clean -purge; stat' --
+
+1. Executing Verilog-2005 frontend: asic/CPU_export_obs.v
+Parsing Verilog input from `asic/CPU_export_obs.v' to AST representation.
+asic/CPU_export_obs.v:3149: Warning: Yosys has only limited support for tri-state logic at the moment.
+Generating RTLIL representation for module `\DIG_D_FF_1bit'.
+Generating RTLIL representation for module `\NAND'.
+Generating RTLIL representation for module `\NOT'.
+Generating RTLIL representation for module `\OR'.
+Generating RTLIL representation for module `\AND'.
+Generating RTLIL representation for module `\NOR'.
+Generating RTLIL representation for module `\D_latch'.
+Generating RTLIL representation for module `\flip_flop'.
+Generating RTLIL representation for module `\AND16'.
+Generating RTLIL representation for module `\NOT16'.
+Generating RTLIL representation for module `\OR16'.
+Generating RTLIL representation for module `\16bit2_to_1MUX'.
+Generating RTLIL representation for module `\Register'.
+Generating RTLIL representation for module `\XOR'.
+Generating RTLIL representation for module `\Incrementer'.
+Generating RTLIL representation for module `\Program_Counter'.
+Generating RTLIL representation for module `\Instruction_reader'.
+Generating RTLIL representation for module `\3_to_8_decoder'.
+Generating RTLIL representation for module `\4_to_16_decoder'.
+Generating RTLIL representation for module `\control'.
+Generating RTLIL representation for module `\Mux_2x1_NBits'.
+Generating RTLIL representation for module `\XOR16'.
+Generating RTLIL representation for module `\Parallel_adder'.
+Generating RTLIL representation for module `\Full_add_sub'.
+Generating RTLIL representation for module `\2_to_1_MUX'.
+Generating RTLIL representation for module `\4_to_1_MUX'.
+Generating RTLIL representation for module `\8_to_1_MUX'.
+Generating RTLIL representation for module `\16bit_8_to_1_MUX'.
+Generating RTLIL representation for module `\ALU'.
+Generating RTLIL representation for module `\DIG_Register'.
+Generating RTLIL representation for module `\flags'.
+Generating RTLIL representation for module `\immediate'.
+Generating RTLIL representation for module `\writeback'.
+Generating RTLIL representation for module `\DIG_RegisterFile'.
+Generating RTLIL representation for module `\branch'.
+Generating RTLIL representation for module `\DIG_RAMDualAccess'.
+Generating RTLIL representation for module `\CPU_export'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \CPU_export
+Used module:     \DIG_RAMDualAccess
+Used module:     \branch
+Used module:         \AND
+Used module:             \NAND
+Used module:         \4_to_1_MUX
+Used module:             \2_to_1_MUX
+Used module:                 \OR
+Used module:                     \NOT
+Used module:         \XOR
+Used module:     \DIG_RegisterFile
+Used module:     \writeback
+Used module:         \16bit2_to_1MUX
+Used module:             \OR16
+Used module:             \AND16
+Used module:             \NOT16
+Used module:     \immediate
+Used module:     \flags
+Used module:         \DIG_Register
+Used module:     \ALU
+Used module:         \16bit_8_to_1_MUX
+Used module:             \8_to_1_MUX
+Used module:         \Full_add_sub
+Used module:             \Parallel_adder
+Used module:         \XOR16
+Used module:     \Mux_2x1_NBits
+Used module:     \control
+Used module:         \4_to_16_decoder
+Used module:             \3_to_8_decoder
+Used module:     \Instruction_reader
+Used module:         \Program_Counter
+Used module:             \Incrementer
+Used module:             \Register
+Used module:                 \flip_flop
+Used module:                     \D_latch
+Used module:                         \NOR
+Used module:     \DIG_D_FF_1bit
+Parameter \Bits = 16
+Parameter \AddrBits = 16
+
+2.2. Executing AST frontend in derive mode using pre-parsed AST for module `\DIG_RAMDualAccess'.
+Parameter \Bits = 16
+Parameter \AddrBits = 16
+Generating RTLIL representation for module `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess'.
+Parameter \Bits = 16
+Parameter \AddrBits = 4
+
+2.3. Executing AST frontend in derive mode using pre-parsed AST for module `\DIG_RegisterFile'.
+Parameter \Bits = 16
+Parameter \AddrBits = 4
+Generating RTLIL representation for module `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile'.
+Parameter \Bits = 4
+
+2.4. Executing AST frontend in derive mode using pre-parsed AST for module `\Mux_2x1_NBits'.
+Parameter \Bits = 4
+Generating RTLIL representation for module `$paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100'.
+Parameter \Default = 0
+
+2.5. Executing AST frontend in derive mode using pre-parsed AST for module `\DIG_D_FF_1bit'.
+Parameter \Default = 0
+Generating RTLIL representation for module `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000'.
+Parameter \Default = 0
+Found cached RTLIL representation for module `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000'.
+
+2.6. Analyzing design hierarchy..
+Top module:  \CPU_export
+Used module:     $paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess
+Used module:     \branch
+Used module:         \AND
+Used module:             \NAND
+Used module:         \4_to_1_MUX
+Used module:             \2_to_1_MUX
+Used module:                 \OR
+Used module:                     \NOT
+Used module:         \XOR
+Used module:     $paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile
+Used module:     \writeback
+Used module:         \16bit2_to_1MUX
+Used module:             \OR16
+Used module:             \AND16
+Used module:             \NOT16
+Used module:     \immediate
+Used module:     \flags
+Used module:         \DIG_Register
+Used module:     \ALU
+Used module:         \16bit_8_to_1_MUX
+Used module:             \8_to_1_MUX
+Used module:         \Full_add_sub
+Used module:             \Parallel_adder
+Used module:         \XOR16
+Used module:     $paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100
+Used module:     \control
+Used module:         \4_to_16_decoder
+Used module:             \3_to_8_decoder
+Used module:     \Instruction_reader
+Used module:         \Program_Counter
+Used module:             \Incrementer
+Used module:             \Register
+Used module:                 \flip_flop
+Used module:                     \D_latch
+Used module:                         \NOR
+Used module:     $paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000
+
+2.7. Analyzing design hierarchy..
+Top module:  \CPU_export
+Used module:     $paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess
+Used module:     \branch
+Used module:         \AND
+Used module:             \NAND
+Used module:         \4_to_1_MUX
+Used module:             \2_to_1_MUX
+Used module:                 \OR
+Used module:                     \NOT
+Used module:         \XOR
+Used module:     $paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile
+Used module:     \writeback
+Used module:         \16bit2_to_1MUX
+Used module:             \OR16
+Used module:             \AND16
+Used module:             \NOT16
+Used module:     \immediate
+Used module:     \flags
+Used module:         \DIG_Register
+Used module:     \ALU
+Used module:         \16bit_8_to_1_MUX
+Used module:             \8_to_1_MUX
+Used module:         \Full_add_sub
+Used module:             \Parallel_adder
+Used module:         \XOR16
+Used module:     $paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100
+Used module:     \control
+Used module:         \4_to_16_decoder
+Used module:             \3_to_8_decoder
+Used module:     \Instruction_reader
+Used module:         \Program_Counter
+Used module:             \Incrementer
+Used module:             \Register
+Used module:                 \flip_flop
+Used module:                     \D_latch
+Used module:                         \NOR
+Used module:     $paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000
+Removing unused module `\DIG_RAMDualAccess'.
+Removing unused module `\DIG_RegisterFile'.
+Removing unused module `\Mux_2x1_NBits'.
+Removing unused module `\DIG_D_FF_1bit'.
+Removed 4 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$asic/CPU_export_obs.v:1622$74 in module $paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.
+Marked 1 switch rules as full_case in process $proc$asic/CPU_export_obs.v:1622$74 in module $paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.
+Marked 1 switch rules as full_case in process $proc$asic/CPU_export_obs.v:3074$67 in module $paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.
+Marked 1 switch rules as full_case in process $proc$asic/CPU_export_obs.v:3152$57 in module $paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.
+Removed a total of 1 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 10 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.$proc$asic/CPU_export_obs.v:24$77'.
+  Set init value: \state = 1'0
+Found init rule in `\DIG_Register.$proc$asic/CPU_export_obs.v:2953$29'.
+  Set init value: \state = 1'0
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~4 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.$proc$asic/CPU_export_obs.v:24$77'.
+Creating decoders for process `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.$proc$asic/CPU_export_obs.v:20$76'.
+Creating decoders for process `$paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.$proc$asic/CPU_export_obs.v:1622$74'.
+     1/1: $1\out[3:0]
+Creating decoders for process `\DIG_Register.$proc$asic/CPU_export_obs.v:2953$29'.
+Creating decoders for process `\DIG_Register.$proc$asic/CPU_export_obs.v:2957$28'.
+     1/1: $0\state[0:0]
+Creating decoders for process `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$proc$asic/CPU_export_obs.v:3074$67'.
+     1/3: $1$memwr$\memory$asic/CPU_export_obs.v:3076$64_EN[15:0]$73
+     2/3: $1$memwr$\memory$asic/CPU_export_obs.v:3076$64_DATA[15:0]$72
+     3/3: $1$memwr$\memory$asic/CPU_export_obs.v:3076$64_ADDR[3:0]$71
+Creating decoders for process `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$proc$asic/CPU_export_obs.v:3152$57'.
+     1/3: $1$memwr$\memory$asic/CPU_export_obs.v:3154$52_EN[15:0]$63
+     2/3: $1$memwr$\memory$asic/CPU_export_obs.v:3154$52_DATA[15:0]$62
+     3/3: $1$memwr$\memory$asic/CPU_export_obs.v:3154$52_ADDR[15:0]$61
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.\out' from process `$paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.$proc$asic/CPU_export_obs.v:1622$74'.
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.\state' using process `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.$proc$asic/CPU_export_obs.v:20$76'.
+  created $dff cell `$procdff$101' with positive edge clock.
+Creating register for signal `\DIG_Register.\state' using process `\DIG_Register.$proc$asic/CPU_export_obs.v:2957$28'.
+  created $dff cell `$procdff$102' with positive edge clock.
+Creating register for signal `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$memwr$\memory$asic/CPU_export_obs.v:3076$64_ADDR' using process `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$proc$asic/CPU_export_obs.v:3074$67'.
+  created $dff cell `$procdff$103' with positive edge clock.
+Creating register for signal `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$memwr$\memory$asic/CPU_export_obs.v:3076$64_DATA' using process `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$proc$asic/CPU_export_obs.v:3074$67'.
+  created $dff cell `$procdff$104' with positive edge clock.
+Creating register for signal `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$memwr$\memory$asic/CPU_export_obs.v:3076$64_EN' using process `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$proc$asic/CPU_export_obs.v:3074$67'.
+  created $dff cell `$procdff$105' with positive edge clock.
+Creating register for signal `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$memwr$\memory$asic/CPU_export_obs.v:3154$52_ADDR' using process `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$proc$asic/CPU_export_obs.v:3152$57'.
+  created $dff cell `$procdff$106' with positive edge clock.
+Creating register for signal `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$memwr$\memory$asic/CPU_export_obs.v:3154$52_DATA' using process `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$proc$asic/CPU_export_obs.v:3152$57'.
+  created $dff cell `$procdff$107' with positive edge clock.
+Creating register for signal `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$memwr$\memory$asic/CPU_export_obs.v:3154$52_EN' using process `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$proc$asic/CPU_export_obs.v:3152$57'.
+  created $dff cell `$procdff$108' with positive edge clock.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.$proc$asic/CPU_export_obs.v:24$77'.
+Removing empty process `$paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.$proc$asic/CPU_export_obs.v:20$76'.
+Found and cleaned up 1 empty switch in `$paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.$proc$asic/CPU_export_obs.v:1622$74'.
+Removing empty process `$paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.$proc$asic/CPU_export_obs.v:1622$74'.
+Removing empty process `DIG_Register.$proc$asic/CPU_export_obs.v:2953$29'.
+Found and cleaned up 1 empty switch in `\DIG_Register.$proc$asic/CPU_export_obs.v:2957$28'.
+Removing empty process `DIG_Register.$proc$asic/CPU_export_obs.v:2957$28'.
+Found and cleaned up 1 empty switch in `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$proc$asic/CPU_export_obs.v:3074$67'.
+Removing empty process `$paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.$proc$asic/CPU_export_obs.v:3074$67'.
+Found and cleaned up 1 empty switch in `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$proc$asic/CPU_export_obs.v:3152$57'.
+Removing empty process `$paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.$proc$asic/CPU_export_obs.v:3152$57'.
+Cleaned up 4 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Optimizing module $paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.
+Optimizing module branch.
+Optimizing module $paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.
+<suppressed ~1 debug messages>
+Optimizing module writeback.
+Optimizing module immediate.
+Optimizing module flags.
+Optimizing module DIG_Register.
+Optimizing module ALU.
+Optimizing module \16bit_8_to_1_MUX.
+Optimizing module \8_to_1_MUX.
+Optimizing module \4_to_1_MUX.
+Optimizing module \2_to_1_MUX.
+Optimizing module Full_add_sub.
+Optimizing module Parallel_adder.
+Optimizing module XOR16.
+Optimizing module $paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.
+Optimizing module control.
+Optimizing module \4_to_16_decoder.
+Optimizing module \3_to_8_decoder.
+Optimizing module Instruction_reader.
+Optimizing module Program_Counter.
+Optimizing module Incrementer.
+Optimizing module XOR.
+Optimizing module Register.
+Optimizing module \16bit2_to_1MUX.
+Optimizing module OR16.
+Optimizing module NOT16.
+Optimizing module AND16.
+Optimizing module flip_flop.
+Optimizing module D_latch.
+Optimizing module NOR.
+Optimizing module AND.
+Optimizing module OR.
+Optimizing module NOT.
+Optimizing module NAND.
+Optimizing module $paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.
+
+4. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod\DIG_D_FF_1bit\Default=s32'00000000000000000000000000000000.
+Deleting now unused module branch.
+Deleting now unused module $paramod\Mux_2x1_NBits\Bits=s32'00000000000000000000000000000100.
+Deleting now unused module writeback.
+Deleting now unused module immediate.
+Deleting now unused module flags.
+Deleting now unused module DIG_Register.
+Deleting now unused module ALU.
+Deleting now unused module \16bit_8_to_1_MUX.
+Deleting now unused module \8_to_1_MUX.
+Deleting now unused module \4_to_1_MUX.
+Deleting now unused module \2_to_1_MUX.
+Deleting now unused module Full_add_sub.
+Deleting now unused module Parallel_adder.
+Deleting now unused module XOR16.
+Deleting now unused module $paramod$5308c1553fda61de8922acbafc4467ee9f1a1b03\DIG_RegisterFile.
+Deleting now unused module control.
+Deleting now unused module \4_to_16_decoder.
+Deleting now unused module \3_to_8_decoder.
+Deleting now unused module Instruction_reader.
+Deleting now unused module Program_Counter.
+Deleting now unused module Incrementer.
+Deleting now unused module XOR.
+Deleting now unused module Register.
+Deleting now unused module \16bit2_to_1MUX.
+Deleting now unused module OR16.
+Deleting now unused module NOT16.
+Deleting now unused module AND16.
+Deleting now unused module flip_flop.
+Deleting now unused module D_latch.
+Deleting now unused module NOR.
+Deleting now unused module AND.
+Deleting now unused module OR.
+Deleting now unused module NOT.
+Deleting now unused module NAND.
+Deleting now unused module $paramod$bf7a46d9c55b4f39e0fd3ce08a4bbc4c1cc3f60f\DIG_RAMDualAccess.
+<suppressed ~326 debug messages>
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+<suppressed ~3948 debug messages>
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 14854 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 13563 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 12782 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 12754 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 12726 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 12718 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 12710 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 12702 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Computing hashes of 12694 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+<suppressed ~6480 debug messages>
+Removed a total of 2160 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \CPU_export..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \CPU_export.
+    Consolidated identical input bits for $mux cell $flatten\DIG_RAMDualAccess_i14.$procmux$93:
+      Old ports: A=16'1111111111111111, B=16'0000000000000000, Y=$flatten\DIG_RAMDualAccess_i14.$procmux$93_Y
+      New ports: A=1'1, B=1'0, Y=$flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0]
+      New connections: $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [15:1] = { $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] $flatten\DIG_RAMDualAccess_i14.$procmux$93_Y [0] }
+    Consolidated identical input bits for $mux cell $flatten\DIG_RegisterFile_i12.$procmux$84:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\DIG_RegisterFile_i12.$procmux$84_Y
+      New ports: A=1'0, B=1'1, Y=$flatten\DIG_RegisterFile_i12.$procmux$84_Y [0]
+      New connections: $flatten\DIG_RegisterFile_i12.$procmux$84_Y [15:1] = { $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] $flatten\DIG_RegisterFile_i12.$procmux$84_Y [0] }
+  Optimizing cells in module \CPU_export.
+Performed a total of 2 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 12694 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $flatten\flags_i9.\DIG_Register_i0.$procdff$102 ($dff) from module CPU_export (D = \flags_i9.DIG_Register_i0.D, Q = \flags_i9.DIG_Register_i0.state).
+Adding EN signal on $flatten\flags_i9.\DIG_Register_i3.$procdff$102 ($dff) from module CPU_export (D = \flags_i9.DIG_Register_i3.D, Q = \flags_i9.DIG_Register_i3.state).
+Adding EN signal on $flatten\flags_i9.\DIG_Register_i2.$procdff$102 ($dff) from module CPU_export (D = \flags_i9.DIG_Register_i2.D, Q = \flags_i9.DIG_Register_i2.state).
+Adding EN signal on $flatten\flags_i9.\DIG_Register_i1.$procdff$102 ($dff) from module CPU_export (D = \flags_i9.DIG_Register_i1.D, Q = \flags_i9.DIG_Register_i1.state).
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+Removed 646 unused cells and 14126 unused wires.
+<suppressed ~5642 debug messages>
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+<suppressed ~887 debug messages>
+
+5.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \CPU_export..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+5.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \CPU_export.
+Performed a total of 0 changes.
+
+5.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 11163 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+5.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+Removed 106 unused cells and 1214 unused wires.
+<suppressed ~1119 debug messages>
+
+5.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+
+5.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \CPU_export..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+5.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \CPU_export.
+Performed a total of 0 changes.
+
+5.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 11057 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+5.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+
+5.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+
+5.23. Finished fast OPT passes. (There is nothing left to do.)
+
+6. Executing MEMORY pass.
+
+6.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+6.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+6.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing CPU_export.DIG_RAMDualAccess_i14.memory write port 0.
+  Analyzing CPU_export.DIG_RegisterFile_i12.memory write port 0.
+
+6.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+6.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\DIG_RAMDualAccess_i14.memory'[0] in module `\CPU_export': no output FF found.
+Checking read port `\DIG_RAMDualAccess_i14.memory'[1] in module `\CPU_export': no output FF found.
+Checking read port `\DIG_RegisterFile_i12.memory'[0] in module `\CPU_export': no output FF found.
+Checking read port `\DIG_RegisterFile_i12.memory'[1] in module `\CPU_export': no output FF found.
+Checking read port address `\DIG_RAMDualAccess_i14.memory'[0] in module `\CPU_export': no address FF found.
+Checking read port address `\DIG_RAMDualAccess_i14.memory'[1] in module `\CPU_export': no address FF found.
+Checking read port address `\DIG_RegisterFile_i12.memory'[0] in module `\CPU_export': no address FF found.
+Checking read port address `\DIG_RegisterFile_i12.memory'[1] in module `\CPU_export': no address FF found.
+
+6.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+
+6.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+Consolidating read ports of memory CPU_export.DIG_RAMDualAccess_i14.memory by address:
+Consolidating read ports of memory CPU_export.DIG_RegisterFile_i12.memory by address:
+
+6.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+6.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+
+6.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+<suppressed ~64 debug messages>
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 11047 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \CPU_export..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \CPU_export.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 11047 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_SHARE pass.
+
+7.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+Removed 1 unused cells and 12 unused wires.
+<suppressed ~8 debug messages>
+
+7.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+
+7.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \CPU_export..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+7.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \CPU_export.
+Performed a total of 0 changes.
+
+7.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 11046 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+7.14. Executing OPT_SHARE pass.
+
+7.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+
+7.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+
+7.18. Finished fast OPT passes. (There is nothing left to do.)
+
+8. Executing TECHMAP pass (map to technology primitives).
+
+8.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `$__div_mod_u'.
+Generating RTLIL representation for module `$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Generating RTLIL representation for module `$connect'.
+Generating RTLIL representation for module `$input_port'.
+Successfully finished Verilog frontend.
+
+8.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $dff.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $mux.
+No more expansions possible.
+<suppressed ~2378 debug messages>
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 11049 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \CPU_export..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \CPU_export.
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\CPU_export'.
+Computing hashes of 11049 cells of `\CPU_export'.
+Finding duplicate cells in `\CPU_export'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_SHARE pass.
+
+9.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+
+9.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module CPU_export.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+Couldn't topologically sort cells, optimizing module CPU_export may take a longer time.
+
+9.10. Finished fast OPT passes. (There is nothing left to do.)
+
+10. Executing ABC pass (technology mapping using ABC).
+
+10.1. Extracting gate netlist of module `\CPU_export' to `<abc-temp-dir>/input.blif'..
+Breaking loop using new signal $abcloop$2825: \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i15.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i13.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i12.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i13.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i15.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i14.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i14.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i15.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i12.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i12.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i0.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i0.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i1.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i1.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i1.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i2.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i2.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i2.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i3.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i3.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i3.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i4.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i4.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i4.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i14.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i5.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i5.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i5.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i13.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i6.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i6.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i6.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i7.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i7.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i7.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i8.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i8.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i8.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i9.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i9.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i9.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i10.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i10.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i10.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i11.\4_to_1_MUX_i1.\2_to_1_MUX_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i11.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.A
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i11.\4_to_1_MUX_i0.\2_to_1_MUX_i1.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i0.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i1.AND_i2.NAND_i0.B
+Breaking loop using new signal $abcloop$2826: \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i14.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i13.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i15.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i1.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i7.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i6.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i4.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i5.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i3.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i10.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i9.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i11.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i8.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i1.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i12.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i4.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i6.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i5.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i3.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i7.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i0.\AND16_i0.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i0.AND16_i2.AND_i0.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i8.NAND_i0.B
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i9.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i10.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i11.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i15.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i14.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i12.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i13.NAND_i1.A
+                                              \AND_i6.NAND_i1.B -> \Mux_2x1_NBits_i7.sel
+Breaking loop using new signal $abcloop$2827: \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i14.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i13.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i13.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i15.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i11.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i12.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i14.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i15.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i12.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i0.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i1.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i1.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i2.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i2.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i3.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i3.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i4.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i4.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i5.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i5.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i6.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i6.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i7.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i7.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i8.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i8.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i9.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i9.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i10.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i10.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i11.2_to_1_MUX_i2.AND_i0.NAND_i0.B
+Breaking loop using new signal $abcloop$2828: \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i15.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i12.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i11.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i10.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\Parallel_adder_i16.\AND_i32.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i9.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i3.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\Parallel_adder_i16.\AND_i23.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i8.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\Parallel_adder_i16.\XOR_i21.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i24.NAND_i0.B
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i13.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> \flags_i9.DIG_Register_i0.en
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i4.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i7.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i6.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\Parallel_adder_i16.\AND_i8.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i0.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i1.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i5.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.XOR_i21.AND_i3.NAND_i1.A
+                                              \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B -> $flatten\ALU_i8.\Full_add_sub_i4.\XOR_i14.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2829: \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i5.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i4.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i8.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i1.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i7.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i6.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i2.AND_i0.NAND_i0.B
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i3.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i9.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i10.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i11.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i15.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i14.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i12.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i2.\AND16_i0.\AND_i13.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \AND_i6.NAND_i1.A -> \Mux_2x1_NBits_i7.sel
+Breaking loop using new signal $abcloop$2830: \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i14.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i15.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i13.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i1.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i2.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i3.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i4.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i5.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i6.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i7.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i8.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i9.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i12.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i10.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i11.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i0.A -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i1.A
+Breaking loop using new signal $abcloop$2831: \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i11.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i14.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i15.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i0.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i1.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i2.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i3.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i13.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i12.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i4.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i5.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i6.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i7.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i8.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i9.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> $flatten\ALU_i8.\16bit_8_to_1_MUX_i5.\8_to_1_MUX_i10.\4_to_1_MUX_i0.\2_to_1_MUX_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i0.NAND_i1.B -> \ALU_i8.16bit_8_to_1_MUX_i5.8_to_1_MUX_i0.4_to_1_MUX_i0.2_to_1_MUX_i2.AND_i2.NAND_i0.B
+Breaking loop using new signal $abcloop$2832: \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i1.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i3.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i4.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i5.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i6.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i7.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i8.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i9.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i10.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i11.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i12.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i13.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i14.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i0.\AND_i15.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i0.AND_i0.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i2.AND_i0.NAND_i0.B
+Breaking loop using new signal $abcloop$2833: \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i2.AND_i28.NAND_i0.B
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.s7
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.s6
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.s5
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.s4
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.s3
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.s1
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \ALU_i8.Full_add_sub_i4.Parallel_adder_i16.AND_i12.NAND_i0.B
+Breaking loop using new signal $abcloop$2834: \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i2.AND_i34.NAND_i0.A
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i2.AND_i31.NAND_i0.A
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i2.AND_i30.NAND_i0.A
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i4.AND_i21.NAND_i0.B
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i2.AND_i28.NAND_i0.A
+Breaking loop using new signal $abcloop$2835: \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i2.AND_i0.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i8.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i2.AND_i0.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\16bit2_to_1MUX_i1.\AND16_i2.\AND_i0.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i2.AND_i0.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i3.\AND_i3.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.16bit2_to_1MUX_i1.AND16_i2.AND_i0.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i2.NAND_i0.A
+Breaking loop using new signal $abcloop$2836: \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i4.AND_i26.NAND_i0.A
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i4.AND_i22.NAND_i0.A
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i4.AND_i10.NAND_i0.A
+Breaking loop using new signal $abcloop$2837: \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i4.AND_i23.NAND_i0.A
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i4.AND_i22.NAND_i0.A
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \control_i5.4_to_16_decoder_i0.3_to_8_decoder_i4.AND_i10.NAND_i0.B
+Breaking loop using new signal $abcloop$2838: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i10.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i11.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i10.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i8.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i10.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i12.NAND_i0.A
+Breaking loop using new signal $abcloop$2839: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i12.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i13.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i12.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i10.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i12.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i14.NAND_i0.A
+Breaking loop using new signal $abcloop$2840: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i14.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i15.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i14.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i12.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i14.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i16.NAND_i0.A
+Breaking loop using new signal $abcloop$2841: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i16.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i17.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i16.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i14.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i16.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i18.NAND_i0.A
+Breaking loop using new signal $abcloop$2842: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i18.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i19.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i18.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i16.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i18.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i20.NAND_i0.A
+Breaking loop using new signal $abcloop$2843: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i20.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i21.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i20.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i18.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i20.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i22.NAND_i0.A
+Breaking loop using new signal $abcloop$2844: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i22.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i23.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i22.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i20.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i22.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i24.NAND_i0.A
+Breaking loop using new signal $abcloop$2845: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i24.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i25.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i24.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i22.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i24.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i26.NAND_i0.A
+Breaking loop using new signal $abcloop$2846: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i26.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i27.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i26.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i24.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i26.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i28.NAND_i0.A
+Breaking loop using new signal $abcloop$2847: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i28.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i29.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i28.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i26.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i28.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i31.AND_i2.NAND_i1.A
+Breaking loop using new signal $abcloop$2848: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i4.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i5.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i4.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i2.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i4.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i6.NAND_i0.A
+Breaking loop using new signal $abcloop$2849: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i6.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i7.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i6.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i4.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i6.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i8.NAND_i0.A
+Breaking loop using new signal $abcloop$2850: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i8.NAND_i0.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i9.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i8.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i6.NAND_i2.A
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i8.NAND_i0.A -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i10.NAND_i0.A
+Breaking loop using new signal $abcloop$2851: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i11.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i13.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i11.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i11.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i11.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i10.NAND_i0.B
+Breaking loop using new signal $abcloop$2852: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i13.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i14.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i13.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i13.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i13.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i12.NAND_i0.B
+Breaking loop using new signal $abcloop$2853: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i15.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i15.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i15.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i15.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i15.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i14.NAND_i0.B
+Breaking loop using new signal $abcloop$2854: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i17.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i0.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i17.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i17.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i17.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i16.NAND_i0.B
+Breaking loop using new signal $abcloop$2855: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i19.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i1.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i19.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i19.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i19.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i18.NAND_i0.B
+Breaking loop using new signal $abcloop$2856: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i21.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i2.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i21.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i21.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i21.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i20.NAND_i0.B
+Breaking loop using new signal $abcloop$2857: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i23.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i3.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i23.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i23.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i23.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i22.NAND_i0.B
+Breaking loop using new signal $abcloop$2858: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i25.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i4.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i25.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i25.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i25.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i24.NAND_i0.B
+Breaking loop using new signal $abcloop$2859: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i27.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i5.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i27.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i27.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i27.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i26.NAND_i0.B
+Breaking loop using new signal $abcloop$2860: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i29.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i6.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i29.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i29.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i29.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i28.NAND_i0.B
+Breaking loop using new signal $abcloop$2861: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i3.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i9.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i3.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i3.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i3.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i2.NAND_i0.B
+Breaking loop using new signal $abcloop$2862: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i31.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i7.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i31.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i31.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i31.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i31.AND_i3.NAND_i1.B
+Breaking loop using new signal $abcloop$2863: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i5.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i10.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i5.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i5.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i5.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i4.NAND_i0.B
+Breaking loop using new signal $abcloop$2864: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i7.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i11.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i7.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i7.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i7.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i6.NAND_i0.B
+Breaking loop using new signal $abcloop$2865: \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i9.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i12.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i9.AND_i2.NAND_i1.B -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Incrementer_i2.\XOR_i9.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.XOR_i9.AND_i2.NAND_i1.B -> \Instruction_reader_i4.Program_Counter_i1.Incrementer_i2.AND_i8.NAND_i0.B
+Breaking loop using new signal $abcloop$2866: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i0.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i0.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2867: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i1.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i1.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2868: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i10.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i10.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2869: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i11.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i11.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2870: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i12.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i12.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2871: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i13.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i13.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2872: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i14.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i14.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2873: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i15.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i15.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2874: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i2.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i2.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2875: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i3.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i3.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2876: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i4.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i4.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2877: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i5.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i5.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2878: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i6.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i6.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2879: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i7.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i7.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2880: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i8.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i8.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2881: \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i9.D_latch_i2.AND_i0.NAND_i1.B
+                                              \Instruction_reader_i4.Program_Counter_i1.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Program_Counter_i1.\Register_i0.\flip_flop_i9.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+Breaking loop using new signal $abcloop$2882: \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i0.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2883: \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i1.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2884: \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i10.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2885: \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i11.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2886: \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i12.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2887: \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i13.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2888: \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i14.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2889: \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i15.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2890: \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i2.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2891: \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i3.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2892: \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i4.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i4.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2893: \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i5.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i5.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2894: \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i6.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i6.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2895: \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i7.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i7.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2896: \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i8.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2897: \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> $flatten\Instruction_reader_i4.\Register_i0.\flip_flop_i9.\D_latch_i2.\AND_i2.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i0.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i2.AND_i0.NAND_i0.A
+Breaking loop using new signal $abcloop$2898: \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i12.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i2.\AND_i4.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i12.NAND_i1.A -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i12.NAND_i1.A
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i12.NAND_i1.A -> \DIG_RegisterFile_i12.Ra [0]
+Breaking loop using new signal $abcloop$2899: \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i13.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i2.\AND_i5.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i13.NAND_i1.A -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i13.NAND_i1.A
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i13.NAND_i1.A -> \DIG_RegisterFile_i12.Ra [1]
+Breaking loop using new signal $abcloop$2900: \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i14.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i2.\AND_i6.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i14.NAND_i1.A -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i14.NAND_i1.A
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i14.NAND_i1.A -> \DIG_RegisterFile_i12.Ra [2]
+Breaking loop using new signal $abcloop$2901: \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i15.NAND_i1.A -> \DIG_RegisterFile_i12.Ra [3]
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i15.NAND_i1.A -> $flatten\writeback_i11.\16bit2_to_1MUX_i1.\AND16_i2.\AND_i7.\NAND_i0.$and$asic/CPU_export_obs.v:35$4_Y
+                                              \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i15.NAND_i1.A -> \writeback_i11.16bit2_to_1MUX_i2.AND16_i0.AND_i15.NAND_i1.A
+Breaking loop using new signal $abcloop$2902: \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i0.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.16bit2_to_1MUX_i16.AND16_i2.AND_i8.A
+Breaking loop using new signal $abcloop$2903: \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i1.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.16bit2_to_1MUX_i16.AND16_i2.AND_i9.A
+Breaking loop using new signal $abcloop$2904: \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i10.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i10.NAND_i1.A
+Breaking loop using new signal $abcloop$2905: \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i11.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i11.NAND_i1.A
+Breaking loop using new signal $abcloop$2906: \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i12.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i12.NAND_i1.A
+Breaking loop using new signal $abcloop$2907: \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i13.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i13.NAND_i1.A
+Breaking loop using new signal $abcloop$2908: \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i14.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i14.NAND_i1.A
+Breaking loop using new signal $abcloop$2909: \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i15.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i15.NAND_i1.A
+Breaking loop using new signal $abcloop$2910: \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i2.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.16bit2_to_1MUX_i16.AND16_i2.AND_i10.A
+Breaking loop using new signal $abcloop$2911: \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i3.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.16bit2_to_1MUX_i16.AND16_i2.AND_i11.A
+Breaking loop using new signal $abcloop$2912: \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i8.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i8.NAND_i1.A
+Breaking loop using new signal $abcloop$2913: \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i2.NOR_i3.NOT_i1.NAND_i0.O
+                                              \Instruction_reader_i4.Register_i0.flip_flop_i9.D_latch_i2.NOR_i3.OR_i0.NAND_i2.A -> \writeback_i11.16bit2_to_1MUX_i1.AND16_i0.AND_i9.NAND_i1.A
+
+10.1.1. Executed ABC.
+Extracted 2299 gates and 2458 wires to a netlist network with 159 inputs and 139 outputs.
+Running ABC script: <abc-temp-dir>/abc.script
+ABC: ======== ABC command line "source <abc-temp-dir>/abc.script"
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf 
+ABC: + &put 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+10.1.2. Re-integrating ABC results.
+ABC RESULTS:               AND cells:      183
+ABC RESULTS:            ANDNOT cells:       60
+ABC RESULTS:               MUX cells:       44
+ABC RESULTS:              NAND cells:      195
+ABC RESULTS:               NOR cells:       36
+ABC RESULTS:               NOT cells:       34
+ABC RESULTS:                OR cells:       96
+ABC RESULTS:             ORNOT cells:       62
+ABC RESULTS:              XNOR cells:       15
+ABC RESULTS:               XOR cells:       44
+ABC RESULTS:        internal signals:     2160
+ABC RESULTS:           input signals:      159
+ABC RESULTS:          output signals:      139
+Removing temp directory.
+Removing global temp directory.
+
+11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \CPU_export..
+Removed 8743 unused cells and 26172 unused wires.
+<suppressed ~33786 debug messages>
+
+12. Printing statistics.
+
+=== CPU_export ===
+
+        +----------Local Count, excluding submodules.
+        | 
+      779 wires
+      872 wire bits
+      148 public wires
+      241 public wire bits
+        8 ports
+       98 port bits
+      776 cells
+       60   $_ANDNOT_
+      183   $_AND_
+        3   $_DFFE_PP_
+        1   $_DFF_N_
+        1   $_DFF_P_
+       44   $_MUX_
+      195   $_NAND_
+       36   $_NOR_
+       34   $_NOT_
+       62   $_ORNOT_
+       96   $_OR_
+       15   $_XNOR_
+       44   $_XOR_
+        2   $mem_v2
+
+Warnings: 1 unique messages, 1 total
+End of script. Logfile hash: cd333701c9, time: 1.48s, user: 1.30s, system: 0.04s, MEM: 202.00 MB peak
+Yosys 0.66 (git sha1 86f2ddebc-dirty, g++ 16.1.1 -march=x86-64 -mtune=generic -O2 -fno-plt -fexceptions -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -ffile-prefix-map=/build/yosys/src=/usr/src/debug/yosys -fPIC -O3) [startdir/yosys at makepkg]
+Time spent: 35% 9x opt_clean (0 sec), 24% 1x flatten (0 sec), ...

@@ -1,0 +1,12 @@
+{
+    "DESIGN_NAME": "CPU_export",
+    "VERILOG_FILES": "dir::src/*.v",
+    "CLOCK_PORT": "clock",
+    "CLOCK_NET": "clock",
+    "CLOCK_PERIOD": 40,
+    "FP_CORE_UTIL": 25,
+    "PL_TARGET_DENSITY": 0.35,
+    "DESIGN_IS_CORE": true,
+    "DIODE_INSERTION_STRATEGY": 3,
+    "RUN_CVC": false
+}
