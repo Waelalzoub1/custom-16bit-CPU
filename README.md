@@ -35,7 +35,7 @@ Fixed 16-bit words, `OP[15:12] RD[11:8] RA[7:4] RB[3:0]`, 16 registers, 16 opcod
 
 Memory and jump targets are register-indirect. There is no shift, multiply, or divide; the programs below build those from ADD. Flags (Z N C V) are latched only by ADD and SUB. The instruction after a taken branch always executes (a one-slot branch delay from the two-stage fetch/execute pipeline); the assembler inserts a NOP there automatically. Full details in [`ISA.md`](ISA.md).
 
-Verified against the Verilog export in this audit (see `sim/`): LDI, LUI (preserves the low byte), ADD, SUB, AND, OR as MOV, LOAD, STORE, JEQ, JNE, JGT, and the delay slot all behave as `ISA.md` says.
+Verified against the Verilog export (see `sim/`): LDI, LUI (preserves the low byte), ADD, SUB, AND, OR as MOV, LOAD, STORE, JEQ, JNE, JGT, and the delay slot all behave as `ISA.md` says.
 
 `HLT` freezes the machine: the control unit's halt bit (bit 12), inverted, is the write-enable of both the program counter and the instruction register, so once an HLT is in the instruction register neither changes again. (An earlier revision computed the halt bit but left it unconnected, so HLT behaved as a NOP; the simulations below caught that.)
 
