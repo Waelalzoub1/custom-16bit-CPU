@@ -8,7 +8,7 @@ Part of a "transistors to transformers" body of work: this is the bottom layer. 
 
 ## What is hand-built and what is not
 
-Everything in the datapath and control path is composed from `NAND.dig`: 5,003 NAND gates in the `CPU.dig` hierarchy. `NAND_transistor.dig` is the same gate as 2 PFET + 2 NFET (4 transistors), so the hand-built logic is about 20,000 transistors.
+Everything in the datapath and control path is composed from `NAND.dig`: 5,004 NAND gates in the `CPU.dig` hierarchy. `NAND_transistor.dig` is the same gate as 2 PFET + 2 NFET (4 transistors), so the hand-built logic is about 20,000 transistors (20,016).
 
 A few pieces use Digital's built-in primitives instead of NAND, and the README says so because the "from one gate" claim should be checked, not taken on faith:
 
@@ -37,7 +37,7 @@ Memory and jump targets are register-indirect. There is no shift, multiply, or d
 
 Verified against the Verilog export in this audit (see `sim/`): LDI, LUI (preserves the low byte), ADD, SUB, AND, OR as MOV, LOAD, STORE, JEQ, JNE, JGT, and the delay slot all behave as `ISA.md` says.
 
-**Known mismatch:** `HLT` does nothing in `CPU_export.v`. The control unit computes a halt bit (bit 12 of its output) but nothing consumes it, and the program counter's write-enable is tied high, so the PC keeps incrementing through zeroed memory (NOPs). In the Digital GUI a halt is only observable if a `Break` element is wired to it. The testbench therefore stops clocking when the instruction register holds an HLT.
+`HLT` freezes the machine: the control unit's halt bit (bit 12), inverted, is the write-enable of both the program counter and the instruction register, so once an HLT is in the instruction register neither changes again. (An earlier revision computed the halt bit but left it unconnected, so HLT behaved as a NOP; the simulations below caught that.)
 
 ## Assembler
 
@@ -63,13 +63,18 @@ Framebuffer mapping (from `CPU.dig`): a STORE whose address has bit 15 set also 
 
 ## Simulation
 
+The same four programs are run on two independent simulators and must reach the same final state (`programs/expected.json`): the Verilog export under Icarus Verilog, and the `.dig` circuit itself in Digital's own engine, headless.
+
 ```bash
-python3 sim/run_sim.py     # assembles every program, runs CPU_export.v under Icarus Verilog, asserts final state
+python3 sim/run_sim.py                # CPU_export.v under Icarus Verilog
+python3 sim/digital/run_digital.py    # CPU.dig in Digital's simulation engine (needs Digital.jar and a JDK)
 ```
 
-`sim/tb.v` loads a `.mem` file into the unified RAM, releases reset, clocks until HLT, and prints the register file, flags, and a memory window; `programs/expected.json` holds the expected values. All 4 programs pass (Icarus Verilog 13.0).
+Both pass 4/4 and agree on every checked register and memory word; each program ends in a real halt, detected as the program counter not moving for 8 cycles. `sim/tb.v` loads a `.mem` file into the unified RAM, releases reset, clocks until the halt, and prints the register file, flags, and a memory window. `sim/digital/DigSim.java` does the same through Digital's Java API.
 
-Digital's own headless test runner (`java -cp Digital.jar CLI test`) needs test-case elements inside a `.dig` file; `CPU.dig` has none, so the programs were not additionally run there.
+A note for anyone re-simulating the Verilog: the registers are master-slave NOR latches, so reset must not be released in the same instant as a clock edge. That is a set/hold race, and a zero-delay simulator turns it into an endless oscillation; the testbench releases reset in the middle of the low phase.
+
+`CPU_export.dig` and `CPU_export.v` are generated, not hand-maintained: `python3 tools/make_export.py` removes the GraphicCard (which has no Verilog equivalent), its address splitter, write-enable gate and constant from `CPU.dig`, and then runs Digital's Verilog generator headlessly.
 
 ## Synthesis and the sky130 run
 
@@ -77,19 +82,19 @@ Generic-gate synthesis of the faithful export (`asic/synth.sh`, Yosys 0.66, memo
 
 | Cell type | Count |
 |---|---|
-| NAND | 195 |
-| AND / ANDNOT | 183 / 60 |
-| OR / ORNOT / NOR | 96 / 62 / 36 |
-| XOR / XNOR | 44 / 15 |
-| MUX | 44 |
-| NOT | 34 |
+| NAND | 233 |
+| AND / ANDNOT | 207 / 44 |
+| OR / ORNOT / NOR | 98 / 74 / 37 |
+| XOR / XNOR | 32 / 13 |
+| MUX | 64 |
+| NOT | 32 |
 | flip-flops | 5 |
 | memories (register file, RAM) | 2 |
-| **total** | **776 cells + 2 memories** |
+| **total** | **841 cells + 2 memories** |
 
 The export has no output ports, so `asic/synth.sh` first adds six observation outputs; without them Yosys deletes the entire design as dead logic.
 
-OpenLane run on sky130A (`asic/run_openlane.sh`, OpenLane commit `ff5509f`, open_pdks `0fe599b`, flow log and reports in `asic/`). The synthesized source is `asic/CPU_asic.v`, which differs from `CPU_export.v` in three ways: the NAND-built master-slave flip-flop is replaced by a behavioral DFF with async reset, the RAM is shrunk from 64K to 256 words, and the same six observation outputs are added.
+OpenLane run on sky130A (`asic/run_openlane.sh`, OpenLane commit `ff5509f`, open_pdks `0fe599b`, flow log and reports in `asic/`). The run predates the HLT fix. Its source is `asic/CPU_asic.v`, which differs from that revision's `CPU_export.v` in three ways: the NAND-built master-slave flip-flop is replaced by a behavioral DFF with async reset, the RAM is shrunk from 64K to 256 words, and the same six observation outputs are added.
 
 | Metric | Value |
 |---|---|
@@ -138,7 +143,7 @@ Muxes and decoders: `2-to-1-MUX` `4-to-1-MUX` `8-to-1-MUX`, `16bit2-to-1MUX` `16
 Arithmetic: `halfAdder` → `Parallel adder` (4-bit) → `Full-add-sub` (16-bit) → `ALU`; `Incrementer`.
 Sequential: `D-latch` → `flip-flop` → `Register` → `memory` (register file from registers; `memory8` is the older 8-register version).
 CPU: `Program Counter`, `Instruction reader`, `control`, `flags`, `branch`, `immediate`, `writeback`, **`CPU`**; `CPU_export` is the variant without the GraphicCard used for the Verilog export `CPU_export.v`.
-Tooling: `asm/` assembler and tests, `programs/` assembly programs and expected results, `sim/` Icarus testbench and runner, `asic/` synthesis script and the OpenLane evidence, `docs/img/` schematics exported with Digital's CLI, `launch.sh` opens the circuits in Digital.
+Tooling: `asm/` assembler and tests, `programs/` assembly programs and expected results, `sim/` Icarus testbench and runner, `sim/digital/` headless runs in Digital's own engine, `tools/` NAND counting and export generation, `asic/` synthesis script and the OpenLane evidence, `docs/img/` schematics exported with Digital's CLI, `launch.sh` opens the circuits in Digital.
 
 Suggested reading order: `NAND` → `NOT`/`AND`/`OR` → `NOR`/`XOR` → `halfAdder` → `Parallel adder` → `Full-add-sub` → `ALU` → `D-latch` → `flip-flop` → `Register` → `memory` → `Program Counter` → `Instruction reader` → `control`/`flags`/`branch`/`immediate`/`writeback` → `CPU`.
 
