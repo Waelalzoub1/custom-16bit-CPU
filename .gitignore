@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 asic/CPU_export_obs.v
 abc.history
+sim/digital/*.class

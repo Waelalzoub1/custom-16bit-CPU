@@ -1196,6 +1196,7 @@ module Program_Counter (
   input JE,
   input clk,
   input R,
+  input WE,
   output [15:0] O
 );
   wire [15:0] s0;
@@ -1204,7 +1205,7 @@ module Program_Counter (
   Register Register_i0 (
     .Value( s0 ),
     .clk( clk ),
-    .WE( 1'b1 ),
+    .WE( WE ),
     .R( R ),
     .SV( O_temp )
   );
@@ -1251,6 +1252,7 @@ module Instruction_reader (
     .JE( JMPE ),
     .clk( clk ),
     .R( R ),
+    .WE( WE ),
     .O( PC_OUT )
   );
   assign RB = s0[3:0];
@@ -3165,64 +3167,65 @@ module CPU_export (
   wire s0;
   wire [15:0] s1;
   wire s2;
-  wire [15:0] s3;
-  wire [3:0] s4;
+  wire s3;
+  wire [15:0] s4;
   wire [3:0] s5;
   wire [3:0] s6;
   wire [3:0] s7;
-  wire [15:0] s8;
-  wire [12:0] s9;
-  wire s10;
-  wire [2:0] s11;
-  wire s12;
-  wire [1:0] s13;
-  wire s14;
+  wire [3:0] s8;
+  wire [15:0] s9;
+  wire [12:0] s10;
+  wire s11;
+  wire [2:0] s12;
+  wire s13;
+  wire [1:0] s14;
   wire s15;
-  wire [1:0] s16;
-  wire s17;
+  wire s16;
+  wire [1:0] s17;
   wire s18;
-  wire [15:0] s19;
+  wire s19;
   wire [15:0] s20;
-  wire s21;
+  wire [15:0] s21;
   wire s22;
   wire s23;
   wire s24;
   wire s25;
   wire s26;
   wire s27;
-  wire [15:0] s28;
+  wire s28;
   wire [15:0] s29;
   wire [15:0] s30;
   wire [15:0] s31;
-  wire s32;
-  wire [3:0] s33;
-  wire s34;
+  wire [15:0] s32;
+  wire s33;
+  wire [3:0] s34;
   wire s35;
   wire s36;
   wire s37;
   wire s38;
+  wire s39;
   DIG_D_FF_1bit #(
     .Default(0)
   )
   DIG_D_FF_1bit_i0 (
     .D( 1'b1 ),
     .C( clock ),
-    .Q( s37 )
+    .Q( s38 )
   );
   \NOT  \NOT_i1 (
     .A( clock ),
-    .O( s38 )
+    .O( s39 )
   );
   DIG_D_FF_1bit #(
     .Default(0)
   )
   DIG_D_FF_1bit_i2 (
-    .D( s37 ),
-    .C( s38 ),
-    .\~Q ( s36 )
+    .D( s38 ),
+    .C( s39 ),
+    .\~Q ( s37 )
   );
   \OR  \OR_i3 (
-    .A( s36 ),
+    .A( s37 ),
     .B( R ),
     .O( s0 )
   );
@@ -3231,117 +3234,121 @@ module CPU_export (
     .clk( clock ),
     .JMP_ADDR( s1 ),
     .JMPE( s2 ),
-    .WE( 1'b1 ),
-    .Data_in( 16'b0 ),
+    .WE( s3 ),
+    .Data_in( 1'b0 ),
     .STR( 1'b0 ),
-    .STR_ADDR( 16'b0 ),
-    .INSTR_IN( s3 ),
-    .OP( s4 ),
-    .RA( s5 ),
-    .RB( s6 ),
-    .RD( s7 ),
-    .PC_OUT( s8 )
+    .STR_ADDR( 1'b0 ),
+    .INSTR_IN( s4 ),
+    .OP( s5 ),
+    .RA( s6 ),
+    .RB( s7 ),
+    .RD( s8 ),
+    .PC_OUT( s9 )
   );
   control control_i5 (
-    .OP( s4 ),
-    .OUT( s9 )
+    .OP( s5 ),
+    .OUT( s10 )
   );
-  assign s10 = s9[0];
-  assign s11 = s9[3:1];
-  assign s12 = s9[4];
-  assign s13 = s9[6:5];
-  assign s14 = s9[7];
-  assign s15 = s9[8];
-  assign s16 = s9[10:9];
-  assign s17 = s9[11];
-  assign s18 = s9[12];
-  assign s34 = s13[0];
-  assign s35 = s13[1];
-  \AND  \AND_i6 (
-    .A( s34 ),
-    .B( s35 ),
-    .O( s32 )
+  assign s11 = s10[0];
+  assign s12 = s10[3:1];
+  assign s13 = s10[4];
+  assign s14 = s10[6:5];
+  assign s15 = s10[7];
+  assign s16 = s10[8];
+  assign s17 = s10[10:9];
+  assign s18 = s10[11];
+  assign s19 = s10[12];
+  \NOT  \NOT_i6 (
+    .A( s19 ),
+    .O( s3 )
+  );
+  assign s35 = s14[0];
+  assign s36 = s14[1];
+  \AND  \AND_i7 (
+    .A( s35 ),
+    .B( s36 ),
+    .O( s33 )
   );
   Mux_2x1_NBits #(
     .Bits(4)
   )
-  Mux_2x1_NBits_i7 (
-    .sel( s32 ),
-    .in_0( s5 ),
-    .in_1( s7 ),
-    .out( s33 )
+  Mux_2x1_NBits_i8 (
+    .sel( s33 ),
+    .in_0( s6 ),
+    .in_1( s8 ),
+    .out( s34 )
   );
-  ALU ALU_i8 (
-    .OP( s11 ),
+  ALU ALU_i9 (
+    .OP( s12 ),
     .A( s1 ),
-    .B( s19 ),
-    .Sub( s12 ),
-    .O( s20 ),
-    .N( s21 ),
-    .C( s22 ),
-    .V( s23 ),
-    .Z( s24 )
+    .B( s20 ),
+    .Sub( s13 ),
+    .O( s21 ),
+    .N( s22 ),
+    .C( s23 ),
+    .V( s24 ),
+    .Z( s25 )
   );
-  flags flags_i9 (
-    .N( s21 ),
-    .C( s22 ),
-    .V( s23 ),
-    .Z( s24 ),
-    .FlagWrite( s17 ),
+  flags flags_i10 (
+    .N( s22 ),
+    .C( s23 ),
+    .V( s24 ),
+    .Z( s25 ),
+    .FlagWrite( s18 ),
     .CLK( clock ),
-    .Zf( s25 ),
-    .Nf( s26 ),
-    .Vf( s27 )
+    .Zf( s26 ),
+    .Nf( s27 ),
+    .Vf( s28 )
   );
-  immediate immediate_i10 (
-    .RA( s5 ),
-    .RB( s6 ),
+  immediate immediate_i11 (
+    .RA( s6 ),
+    .RB( s7 ),
     .RDval( s1 ),
-    .IMM( s28 ),
-    .LUI( s29 )
+    .IMM( s29 ),
+    .LUI( s30 )
   );
-  writeback writeback_i11 (
-    .ALU( s20 ),
-    .MEM( s30 ),
-    .IMM( s28 ),
-    .LUI( s29 ),
-    .WBsrc( s13 ),
-    .WBdata( s31 )
+  writeback writeback_i12 (
+    .ALU( s21 ),
+    .MEM( s31 ),
+    .IMM( s29 ),
+    .LUI( s30 ),
+    .WBsrc( s14 ),
+    .WBdata( s32 )
   );
   DIG_RegisterFile #(
     .Bits(16),
     .AddrBits(4)
   )
-  DIG_RegisterFile_i12 (
-    .Din( s31 ),
-    .we( s10 ),
-    .Rw( s7 ),
+  DIG_RegisterFile_i13 (
+    .Din( s32 ),
+    .we( s11 ),
+    .Rw( s8 ),
     .C( clock ),
-    .Ra( s33 ),
-    .Rb( s6 ),
+    .Ra( s34 ),
+    .Rb( s7 ),
     .Da( s1 ),
-    .Db( s19 )
+    .Db( s20 )
   );
-  branch branch_i13 (
-    .Cond( s16 ),
-    .Zf( s25 ),
-    .Nf( s26 ),
-    .Vf( s27 ),
-    .Branch( s15 ),
+  branch branch_i14 (
+    .Cond( s17 ),
+    .Zf( s26 ),
+    .Nf( s27 ),
+    .Vf( s28 ),
+    .Branch( s16 ),
     .JumpEn( s2 )
   );
   DIG_RAMDualAccess #(
     .Bits(16),
     .AddrBits(16)
   )
-  DIG_RAMDualAccess_i14 (
-    .str( s14 ),
+  DIG_RAMDualAccess_i15 (
+    .str( s15 ),
     .C( clock ),
     .ld( 1'b1 ),
     .\1A ( s1 ),
-    .\1Din ( s19 ),
-    .\2A ( s8 ),
-    .\1D ( s30 ),
-    .\2D ( s3 )
+    .\1Din ( s20 ),
+    .\2A ( s9 ),
+    .\1D ( s31 ),
+    .\2D ( s4 )
   );
 endmodule
