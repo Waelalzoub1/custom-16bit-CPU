@@ -5,7 +5,13 @@ import json, os, re, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 exp = json.load(open('programs/expected.json'))
-subprocess.check_call(['iverilog', '-g2012', '-o', 'sim/cpu.vvp', 'sim/tb.v', 'CPU_export.v'])
+v = open('CPU_export.v').read()
+def inst(pattern):                       # Digital numbers its instances; look the names up instead of hard-coding them
+    return re.search(r'^\s+' + pattern + r'\s*\($', v, re.M).group(1)
+defs = {'RAM': inst(r'(DIG_RAMDualAccess_i\d+)'), 'RF': inst(r'(DIG_RegisterFile_i\d+)'),
+        'FLAGS': inst(r'flags (flags_i\d+)'), 'IR': inst(r'Instruction_reader (Instruction_reader_i\d+)')}
+subprocess.check_call(['iverilog', '-g2012'] + [f'-D{k}={n}' for k, n in defs.items()] + ['-o', 'sim/cpu.vvp', 'sim/tb.v', 'CPU_export.v'],
+                      stderr=subprocess.DEVNULL)
 fails = 0
 for name, e in exp.items():
     subprocess.check_call([sys.executable, 'asm/asm.py', f'programs/{name}.asm', '-o', f'programs/{name}.hex'])
